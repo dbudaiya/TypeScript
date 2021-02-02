@@ -1,0 +1,128 @@
+    <!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    /*1.使用setTimeout*/
+    // setTimeout(() => {
+    //   console.log("我被打死");
+    // }, 2000)
+
+    //在什么情况下使用异步请求
+    // 一般情况下有异步操作,使用Promise对这个异步操作进行封装
+    // new =>构造函数(1.保存了一些状态信息2.执行传入的函数)
+    // 在执行传入的函数,会传入两个参数resolve,reject
+
+    // new Promise((resolve, reject) => {
+    //   setTimeout(() => {
+    //     // resolve("我被执行了")
+    //     reject("start err")
+    //   }, 2000)
+    // }).then(data => {
+    //   console.log(data);
+    // }).catch(err => {
+    //   console.log(err);
+    // })
+
+    // new Promise((resolve, reject) => {
+    //   setTimeout(() => {
+    //     // resolve("我被执行了")
+    //     reject("start err")
+    //   }, 2000)
+    // }).then(data => {
+    //   console.log(data);
+    // }, err => {
+    //   console.log(err);
+    // })
+
+    // 使用Promise.all方法
+    // Promise.all([
+    //   new Promise((resolve, reject) => {
+    //     setTimeout(() => {
+    //       resolve("我被执行了")
+    //     }, 2000)
+    //   }),
+    //   new Promise((resolve, reject) => {
+    //     setTimeout(() => {
+    //       resolve("我被执行了..........")
+    //       // reject("start err")
+    //     }, 3000)
+    //   })]).then(data => {
+    //     console.log(data);
+    //   }, err => {
+    //     console.log(err);
+    //   })
+
+
+    //promise
+    // 参数 =>函数(resolve,reject)
+    // resolve,reject本身他们又是函数
+    // 链式编程
+
+    // new Promise((resolve, reject) => {
+    //   // 第一次网络请求
+    //   setTimeout(() => {
+    //     resolve("都不按时候")
+    //   }, 1000)
+    // }).then(res => {
+    //   // 第一拿到的结果
+    //   console.log(res);
+    //   console.log(res);
+    //   console.log(res);
+    //   console.log(res);
+    //   console.log(res);
+
+    //   return new Promise((resolve, reject) => {
+    //     setTimeout(() => {
+    //       resolve("")
+    //     })
+    //   }).then(res => {
+    //     console.log("hello vue.js");
+    //     console.log("hello vue.js");
+    //     console.log("hello vue.js");
+    //     console.log("hello vue.js");
+    //     console.log("hello vue.js");
+
+    //     return new Promise((resolve, reject) => {
+    //       setTimeout(() => {
+    //         resolve()
+    //       })
+    //     }).then(res => {
+    //       console.log("budaishu");
+    //       console.log("budaishu");
+    //       console.log("budaishu");
+    //       console.log("budaishu");
+    //       console.log("budaishu");
+    //     })
+    //   })
+    // })
+
+
+    new Promise(resolve => {
+      resolve("aaa")
+    }).then(res => {
+      console.log(res, '第一场获取的代码');
+
+      return new Promise(resolve => {
+        resolve(res + 'bbbb')
+      })
+    }).then(res => {
+      console.log(res, '第二层获取的代码');
+
+      return new Promise(resolve => {
+        resolve(res + 'ccc')
+      })
+    }).then(res => {
+      console.log(res, '获取的代码');
+    })
+  </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

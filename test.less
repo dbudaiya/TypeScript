@@ -1,0 +1,87 @@
+// 变量(Variables)
+@height :11px;
+@width:@height+20px;
+
+/*转义(Escaping)*/ 
+@min768: ~"(min-width:768px)";
+
+.component{
+  width: @width;
+
+  @media  @min768{
+    width:@width;
+
+    @media (min-resolution :192dpi){
+      background-color: aliceblue;
+    }
+
+  }
+
+  @media (min-width:1290px) {
+    width: 1;
+    
+  }
+}
+
+.mian{
+  background-color: antiquewhite;
+
+}
+
+#menu a{
+  color: aqua;
+  .mian();
+}
+
+
+#back li{
+  .mian();
+  font-size: 10px;
+}
+
+
+
+.clearfix{
+  display: inline;
+  zoom: normal;
+  &::after{
+    content: "";
+    display: block;
+  }
+}
+
+@var :red;
+#page{
+  @var :orange;
+  #title{
+    background-color: @var;
+  }
+}
+
+/*符号运算(Operations)*/ 
+@convarsion-1 :5cm+10mm;
+@convarsion-2:2-4cm+2mm;
+
+@base:5%;
+@filter:@base*2;
+@other:@base*@filter;
+
+
+/*Calc案例*/ 
+// @var :50vh/2;
+// width: calc(@var - 20px);  
+
+/*映射*/ 
+#colors(){
+  primary:blue;
+  secondary:red;
+}
+
+.button{
+  color: #colors[primary];
+  border: solid 1px red;
+}
+
+/*导入(import)*/ 
+// @import "library"; // library.less
+@import "typo.css";

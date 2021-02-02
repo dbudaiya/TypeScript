@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>轮播图</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .wrap {
+      width: 800px;
+      height: 400px;
+      position: relative;
+      margin: 20px auto;
+    }
+
+    .list {
+      width: 800px;
+      height: 400px;
+      list-style: none;
+      position: relative;
+    }
+
+    .item {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      font-size: 40px;
+      color: white;
+      opacity: 1;
+      transition: all .5s;
+    }
+
+    .item:nth-child(1) {
+      background-color: aqua;
+    }
+
+    .item:nth-child(2) {
+      background-color: blue;
+    }
+
+    .item:nth-child(3) {
+      background-color: brown;
+    }
+
+    .item:nth-child(4) {
+      background-color: orange;
+    }
+
+    .item:nth-child(5) {
+      background-color: green;
+    }
+
+    .item.active {
+      z-index: 10;
+    }
+
+    .btn {
+      width: 55px;
+      padding: 10px;
+      position: absolute;
+      z-index: 100;
+      bottom: 200px;
+    }
+
+    .pointlist {
+      position: absolute;
+      list-style: none;
+      right: 20px;
+      bottom: 10px;
+      z-index: 1000;
+
+    }
+
+    .point {
+      width: 8px;
+      height: 8px;
+      background-color: rgba(0, 0, 0, 0.4);
+      border-radius: 100%;
+      float: left;
+      margin-left: 14px;
+      border: solid 2px rgba(255, 255, 255, 0.6);
+    }
+
+    .point.active {
+      background-color: rgba(255, 255, 255, 0.6)
+    }
+
+    #btn1 {
+      left: 10px;
+    }
+
+    #btn2 {
+      right: 10px;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="wrap">
+    <ul class="list">
+      <li class="item active">0</li>
+      <li class="item">1</li>
+      <li class="item">2</li>
+      <li class="item">3</li>
+      <li class="item">4</li>
+    </ul>
+    <ul class="pointlist">
+      <li class="point active"></li>
+      <li class="point"></li>
+      <li class="point"></li>
+      <li class="point"></li>
+      <li class="point"></li>
+    </ul>
+    <button id="btn1" class="btn">
+      < </button>
+        <button id="btn2" class="btn">
+          > </button>
+  </div>
+  <script>
+    var items = document.querySelectorAll(".item");
+    var btn1 = document.querySelector("#btn1");
+    var btn2 = document.querySelector("#btn2");
+    var points = document.querySelectorAll(".point")
+    var index = 0;//代表第一张图片
+
+    var handleBtn1Click = function () {
+      //当前幻灯片
+      let current = items[index]
+      current.classList.remove("active")
+      points[index].classList.remove("active")
+      index++
+      if (index >= items.length) {
+        index = 0
+      }
+
+      items[index].classList.add("active")
+      points[index].classList.add("active")
+    }
+    var handleBtn2Click = function () {
+      //当前幻灯片
+      var current = items[index]
+      current.classList.remove("active")
+      points[index].classList.remove("active")
+
+      index--
+      if (index < 0) {
+        index = items.length - 1
+      }
+
+      items[index].classList.add("active")
+      points[index].classList.add("active")
+    }
+
+
+
+    btn1.addEventListener("click", handleBtn1Click)
+    btn2.addEventListener("click", handleBtn2Click)
+
+  </script>
+  <!-- <script type="text/javascript">
+    var items = document.getElementsByClassName("item");
+    var btn1 = document.getElementById("btn1");
+    var btn2 = document.getElementById("btn2");
+    var points = document.getElementsByClassName("point")
+    var index = 0;//代表第一张图片
+
+    var clearActive = function () {
+      for (let i = 0; i < items.length; i++) {
+        items[i].className = "item"
+      }
+
+      for (let i = 0; i < points.length; i++) {
+        points[i].className = "point"
+      }
+    }
+
+    var goIndex = function () {
+      clearActive()
+
+      console.log(index);
+      items[index].className = "item active"
+      points[index].className = "point active"
+
+    }
+
+    var goNext = function () {
+      if (index < 4) {
+        index++
+      } else {
+        index = 0
+      }
+      goIndex()
+    }
+    var goBack = function () {
+      if (index == 0) {
+        index = 4
+      } else {
+        index--
+      }
+      goIndex()
+    }
+    setInterval(() => {
+      goNext()
+    }, 1000)
+    btn1.addEventListener("click", () => {
+      goBack()
+    })
+
+    btn2.addEventListener("click", () => {
+      goNext()
+    })
+
+
+  </script> -->
+</body>
+
+</html>

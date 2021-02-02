@@ -1,0 +1,12 @@
+{
+  "include": ["./src/**/*"],
+  "compilerOptions": {
+    "target": "ES3",
+    "module": "ES6",
+    "strict": true,
+    "allowJs": false,
+    "checkJs": false,
+    "removeComments": true,
+
+  },
+}
